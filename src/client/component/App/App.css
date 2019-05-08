@@ -1,0 +1,17 @@
+.hidden {
+	opacity: 0;
+	display: none;
+}
+
+.cross:after {
+	content: '\d7';
+	cursor: pointer;
+}
+
+.pointer {
+	cursor: pointer !important;
+} 
+
+.width-50 {
+	width: 50%;
+}

@@ -1,0 +1,32 @@
+.component-parking-zone {
+	height: 32px;
+	width: 32px;
+	border-radius: 32px;
+	position: absolute;
+	margin-left: -16px;
+	margin-top: -32px;
+
+	font-family: arial;
+	color: #288be4;
+	font-weight: bold;
+	text-align: center;
+	font-size: 14px;
+	line-height: 30px;
+	cursor: pointer;
+	background: url('./pin.svg');
+	background-repeat: no-repeat;
+
+	transition: 0.1s;
+	-webkit-transition: 0.1s;
+}
+
+.component-parking-zone:hover {
+	height: 40px;
+	width: 40px;
+	margin-top: -40px;
+	margin-left: -20px;
+}
+
+.zone-hidden {
+	display: none;
+}

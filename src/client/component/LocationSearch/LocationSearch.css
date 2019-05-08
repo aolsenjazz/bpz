@@ -1,0 +1,70 @@
+.magnifier {
+	height: 32px;
+}
+
+.component-location-search {
+	height: 28px;
+	transition: 0.3s;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.component-search-hidden {
+	margin-top: 0 !important;
+	opacity: 0;
+	transition: opacity 0.2s margin-top 0.2s height 0s linear;
+}
+
+.component-location-search > div {
+	display: flex;
+}
+
+.component-location-search div {
+	width: 100%;
+}
+
+.component-location-search input {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+	vertical-align: bottom;
+	height: 28px;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.component-location-search ::placeholder {
+	color: rgba(0, 0, 0, 0.5);
+	font-style: italic;
+}
+
+.react-autosuggest__container {
+	margin-left: 8px;
+}
+
+.react-autosuggest__suggestions-container {
+	background-color: white;
+	right: 0px;
+}
+
+.component-location-search ul {
+	list-style: none;
+}
+
+.component-location-search .react-autosuggest__suggestion {
+	padding: 18px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.component-location-search .react-autosuggest__suggestion:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+	cursor: pointer;
+}
+
+@media (max-width: 700px) {
+	.component-search-hidden {
+		display: none;
+	}
+}

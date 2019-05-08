@@ -1,0 +1,60 @@
+.component-zone-cluster {
+	height: 32px;
+	width: 32px;
+	border-radius: 32px;
+	position: absolute;
+	margin-left: -16px;
+	margin-top: -32px;
+
+	font-family: arial;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	font-size: 14px;
+	line-height: 30px;
+	cursor: pointer;
+	background-color: #288be4;
+
+	transition: 0.1s;
+	-webkit-transition: 0.1s;
+
+	animation: pulse 1000ms infinite;
+}
+
+.component-zone-cluster:hover {
+	height: 40px;
+	width: 40px;
+	margin-top: -36px;
+	margin-left: -20px;
+	line-height: 37px;
+}
+
+.cluster-hidden {
+	display: none;
+}
+
+@-webkit-keyframes pulse {
+	0% {
+		-webkit-box-shadow: 0 0 0 0 rgba(16,55,89, 0.4);
+	}
+	70% {
+		-webkit-box-shadow: 0 0 0 10px rgba(16,55,89, 0);
+	}
+	100% {
+		-webkit-box-shadow: 0 0 0 0 rgba(16,55,89, 0);
+	}
+}
+@keyframes pulse {
+	0% {
+		-moz-box-shadow: 0 0 0 0 rgba(16,55,89, 0.4);
+		box-shadow: 0 0 0 0 rgba(16,55,89, 0.4);
+	}
+	70% {
+		-moz-box-shadow: 0 0 0 10px rgba(16,55,89, 0);
+		box-shadow: 0 0 0 10px rgba(16,55,89, 0);
+	}
+	100% {
+		-moz-box-shadow: 0 0 0 0 rgba(16,55,89, 0);
+		box-shadow: 0 0 0 0 rgba(16,55,89, 0);
+	}
+}
