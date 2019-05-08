@@ -41,7 +41,7 @@
     "server": "webpack --watch --config webpack.server.js --mode development",
     "client": "webpack --watch --config webpack.client.js --mode development",
     "start": "node build/server",
-    "build-prod": "webpack --config webpack.server.js --mode development && webpack --config webpack.client.js --mode development"
+    "build-prod": "npm install && webpack --config webpack.server.js --mode development && webpack --config webpack.client.js --mode development"
   },
   "keywords": [],
   "author": "",
