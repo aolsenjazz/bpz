@@ -39,7 +39,6 @@ class SimpleMap extends React.Component {
 	}
 
 	handleMapClick({x, y, lat, lng, event}) {
-		console.log('map')
 		if (!this.state.showTooltip) {
 			this.props.activeLocation(lat, lng);	
 		}
@@ -61,31 +60,6 @@ class SimpleMap extends React.Component {
 		});
 	}
 
-	getMarkers() {
-		if (this.state.markers) {
-			return new Promise((resolve, reject) => {
-				resolve(this.state.markers);
-			});
-		} else {
-			return axios.get('https://bpz.onrender.com/zones')
-				.then(response => {
-					let parsed = response.data.map(z => {
-						z.zId = z.z_id;
-						return z;
-					})
-
-					this.setState({
-						markers: parsed
-					});
-
-					return parsed;
-				})
-				.catch(error => {
-					this.setState({ connectFailed: true })
-				});
-		}
-	}
-
 	onChange({bounds, center, marginBounds, size, zoom}) {
 		if (zoom !== this.props.activeLocation().zoom) {
 			this.setState({ showTooltip: false })	
@@ -94,8 +68,7 @@ class SimpleMap extends React.Component {
 		let active = this.props.activeLocation();
 		this.props.activeLocation(active.lat, active.lng, zoom, active.zId, active.description);
 
-		this.getMarkers()
-			.then(markers => this.updateVisibleMarkers(markers, bounds));
+		this.updateVisibleMarkers(this.props.markers, bounds);
 	}
 
 	updateVisibleMarkers(markers, bounds) {

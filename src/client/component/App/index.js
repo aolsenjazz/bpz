@@ -111,6 +111,7 @@ class App extends React.Component {
 					overlayMode={this.overlayMode}
 					activeLocation={this.activeLocation}
 					center={this.center}
+					markers={this.props.markers}
 				/>	
 			</Sidebar>
 		);

@@ -24,6 +24,7 @@ class OverlayContainer extends React.Component {
 					zoom={ this.props.activeLocation().zoom } 
 					activeLocation={this.props.activeLocation}
 					overlayMode={this.props.overlayMode}
+					markers={this.props.markers}
 				/>
 				<SubmitLocationForm 
 					show={this.props.overlayMode() === OVERLAYS.SUBMIT}

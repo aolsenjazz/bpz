@@ -1,13 +1,13 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 
-function renderer(title, content) {
-	const _content = renderToString(content);
+function renderer(title, initialState, content) {
 
 	const jsx = `
 		<!DOCTYPE html>
 		<html>
 		<head>
+			<script>window.__APP_INITIAL_STATE__ = ${initialState}</script>
 			<title>${title}</title>
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@ function renderer(title, content) {
 		</head>
 
 		<body>
-			<div id="app">${_content}</div>
+			<div id="app">${content}</div>
 			<script src="/bundle.js"></script>
 		</body>
 		</html>

@@ -1,6 +1,8 @@
 import React from 'react';
 import express from 'express';
 import renderer from './renderer';
+import db from './db';
+import { renderToString } from 'react-dom/server';
 
 import Home from '../client/Home';
 
@@ -13,8 +15,13 @@ const app = express();
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    const result = renderer('Home', <Home />);
-    res.send(result);
+	db.zones.getAll()
+		.then(data => {
+			const initialState = {markers: data};
+			const content = renderToString(<Home {...initialState} />)
+			const result = renderer('Home', JSON.stringify(initialState), content);
+			res.send(result);
+		});
 });
 
 app.get('/boston-parking-guide', (req, res) => {
@@ -27,5 +34,5 @@ app.use(notFoundRouter);
 app.use(serverErrorRouter);
 
 app.listen(3000, () => {
-    console.log('Server is listenting to port 3000');
+	console.log('Server is listenting to port 3000');
 });
