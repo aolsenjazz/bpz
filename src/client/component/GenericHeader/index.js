@@ -1,15 +1,28 @@
 import React from 'react';
 import LocationSearch from '../LocationSearch';
+import Pin from './pin.svg';
 import './GenericHeader.css';
 
 class GenericHeader extends React.Component {
 
 	render() {
 		return (
-			<header>
-				<div className='title'>
-					<h1><a href='/'>BOSTON PARKING ZONES</a></h1>
-					<div className='underline'></div>
+			<header id='generic-header'>
+				<div id='header-content-wrapper'>
+					<div className='title'>
+						<h1><a href='/'>BOSTON PARKING ZONES</a></h1>
+						<div className='underline'></div>
+					</div>
+					<nav>
+						<ul>
+							<li>
+								<a href='/'>
+									<img src={Pin} alt='pin' height={18}></img>
+									View the Map
+								</a>
+							</li>
+						</ul>
+					</nav>
 				</div>
 			</header>
 		)

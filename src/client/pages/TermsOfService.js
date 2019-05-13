@@ -1,7 +1,8 @@
 import React from 'react';
 import GenericHeader from '../component/GenericHeader';
+import Footer from '../component/Footer';
 
-import './TermsOfService.css';
+import './terms-of-service.css';
 
 class TermsOfService extends React.Component {
 
@@ -170,6 +171,7 @@ class TermsOfService extends React.Component {
 					<h2>Contact Information</h2>
 					<p>If you have any questions about these Terms of Service, please contact us via <a href="mailto:aolsenjazz@gmail.com">email</a> or <a href="tel:5082330087">phone</a>.</p>
 				</div>
+				<Footer />
 			</div>
 		)
 	}
