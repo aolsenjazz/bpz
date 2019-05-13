@@ -68,7 +68,12 @@ class SimpleMap extends React.Component {
 		let active = this.props.activeLocation();
 		this.props.activeLocation(active.lat, active.lng, zoom, active.zId, active.description);
 
-		this.updateVisibleMarkers(this.props.markers, bounds);
+		let parsed = this.props.markers.map(m => {
+			m.zId = m.z_id;
+			return m;
+		});
+
+		this.updateVisibleMarkers(parsed, bounds);
 	}
 
 	updateVisibleMarkers(markers, bounds) {

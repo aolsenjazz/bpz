@@ -4,10 +4,12 @@ const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base.js');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const config = {
 	context: __dirname,
-	entry: ['./src/client/index.js'],
+	entry: ['./src/client/browser.js'],
 	output: {
 		path: path.join(__dirname, 'public'),
 		filename: 'bundle.js',
@@ -43,6 +45,11 @@ const config = {
 		new MiniCssExtractPlugin({
 			filename: 'styles.css',
 		}),
+		new WebappWebpackPlugin('./src/client/favicon.svg'),
+		new CopyPlugin([
+			{ from: './src/client/sitemap.xml', to: './sitemap.xml' },
+			{ from: './src/client/robots.txt', to: './robots.txt' },
+		]),
 	]
 }
 

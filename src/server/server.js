@@ -4,7 +4,11 @@ import renderer from './renderer';
 import db from './db';
 import { renderToString } from 'react-dom/server';
 
-import Home from '../client/Home';
+import Home from '../client/pages/Home';
+import About from '../client/pages/About';
+import Contact from '../client/pages/Contact';
+import PrivacyPolicy from '../client/pages/PrivacyPolicy';
+import TermsOfService from '../client/pages/TermsOfService';
 
 import notFoundRouter from './routes/404-router';
 import serverErrorRouter from './routes/500-router';
@@ -24,7 +28,35 @@ app.get('/', (req, res) => {
 		});
 });
 
-app.get('/boston-parking-guide', (req, res) => {
+app.get('/about', (req, res) => {
+	const initialState = {};
+	const content = renderToString(<About {...initialState} />)
+	const result = renderer('About', JSON.stringify(initialState), content);
+	res.send(result);
+});
+
+app.get('/contact', (req, res) => {
+	const initialState = {};
+	const content = renderToString(<Contact {...initialState} />)
+	const result = renderer('Contact', JSON.stringify(initialState), content);
+	res.send(result);
+});
+
+app.get('/terms-of-service', (req, res) => {
+	const initialState = {};
+	const content = renderToString(<TermsOfService {...initialState} />)
+	const result = renderer('Terms of Service', JSON.stringify(initialState), content);
+	res.send(result);
+});
+
+app.get('/privacy-policy', (req, res) => {
+	const initialState = {};
+	const content = renderToString(<PrivacyPolicy {...initialState} />)
+	const result = renderer('Privacy Policy', JSON.stringify(initialState), content);
+	res.send(result);
+});
+
+app.get('/boston-parking', (req, res) => {
 	// TODO: this is where the parking guide will go
 	res.send('this is a test');
 });
