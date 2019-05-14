@@ -17,7 +17,7 @@ class GenericHeader extends React.Component {
 						<ul>
 							<li>
 								<a href='/'>
-									<img src={Pin} alt='pin' height={18}></img>
+									<img src={Pin} alt='parking zone location' height={18}></img>
 									View the Map
 								</a>
 							</li>

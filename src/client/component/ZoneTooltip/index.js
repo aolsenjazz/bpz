@@ -27,7 +27,7 @@ export default class ParkingZone extends React.Component {
 			 	<div className='tooltip-data-container'>
 					<div className='data-container tooltip-header'>
 						<div>
-							<img src={Sign} height='15' alt='zone id' />
+							<img src={Sign} height='15' alt='park boston zone id sign' />
 							<p>
 								Zone ID
 							</p>
@@ -40,7 +40,7 @@ export default class ParkingZone extends React.Component {
 					</div>
 					<div className='data-container width-50'>
 						<div>
-							<img src={Pin} height='15' alt='street name' />
+							<img src={Pin} height='15' alt='meter zone location icon' />
 							<p>
 								Street
 							</p>
@@ -51,9 +51,9 @@ export default class ParkingZone extends React.Component {
 					</div>
 					<div className='data-container width-50'>
 						<div>
-							<img src={Compass} height='15' alt='direction' />
+							<img src={Compass} height='15' alt='meter zone location icon side of street' />
 							<p>
-								Direction
+								Side of Street
 							</p>
 						</div>
 						<p>

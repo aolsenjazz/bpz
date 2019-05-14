@@ -75,7 +75,7 @@ class SubmitLocationForm extends React.Component {
 					<div>
 						<p>Zone ID</p>
 						<div>
-							<img src={Sign} alt='number icon' height='14' />
+							<img src={Sign} alt='ParkBoston zone id sign icon' height='14' />
 							<input 
 								name='zId' 
 								placeholder='e.g. 219' 
@@ -88,21 +88,21 @@ class SubmitLocationForm extends React.Component {
 					<div>
 						<p>Latitude</p>
 						<div>
-							<img src={Pin} alt='number icon' height='14' />
+							<img src={Pin} alt='Parking meter zone longitude location icon' height='14' />
 							<p className='read-only-field'>{this.props.activeLocation().lat || 'Click somewhere on the map!'}</p>
 						</div>
 					</div>
 					<div>
 						<p>Longitude</p>
 						<div>
-							<img src={Pin} alt='number icon' height='14' />
+							<img src={Pin} alt='Parking meter zone longitude location icon' height='14' />
 							<p className='read-only-field'>{this.props.activeLocation().lng || 'Click somewhere on the map!'}</p>
 						</div>
 					</div>
 					<div>
 						<p>Description</p>
 						<div>
-							<img src={Details} alt='number icon' height='14' />
+							<img src={Details} alt='PassPort Parking zone description icon' height='14' />
 							
 							<input 
 								name='description' 

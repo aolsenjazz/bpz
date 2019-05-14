@@ -67,7 +67,7 @@ class FeedbackForm extends React.Component {
 					<div>
 						<p>Email</p>
 						<div>
-							<img src={Details} alt='number icon' height='14' />
+							<img src={Details} alt='your email address' height='14' />
 							<input 
 								name='email'
 								type='email'
@@ -83,7 +83,7 @@ class FeedbackForm extends React.Component {
 					<div>
 						<p>Feedback</p>
 						<div>
-							<img src={Details} alt='number icon' height='14' />
+							<img src={Details} alt='parking zone feedback' height='14' />
 							<input 
 								name='feedback' 
 								onChange={this.handleChange} 

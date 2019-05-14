@@ -80,7 +80,7 @@ class LocationSearch extends React.Component {
 		return (
 			<div className={'component-location-search ' + (this.props.overlayMode ? 'component-search-hidden' : '')}>
 				<div>
-					<img src={Magnifier} className='magnifier' alt='magnifier' />
+					<img src={Magnifier} className='magnifier' alt='parkboston meter location search' />
 					<Autosuggest
 						inputProps={inputProps}
 						suggestions={suggestions}

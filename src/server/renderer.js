@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 
-function renderer(title, initialState, content) {
+function renderer(title, meta, initialState, content) {
 
 	const jsx = `
 		<!DOCTYPE html>
@@ -10,6 +10,7 @@ function renderer(title, initialState, content) {
 			<script>window.__APP_INITIAL_STATE__ = ${initialState}</script>
 			<title>${title}</title>
 			<meta charset="utf-8">
+			<meta name="description" content=${meta}/>
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" type="text/css" href="styles.css">
 			<link rel="shortcut icon" href="/assets/favicon.ico">

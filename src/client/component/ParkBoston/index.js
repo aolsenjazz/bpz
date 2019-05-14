@@ -9,7 +9,7 @@ class ParkBoston extends React.Component {
 		return (
 			<div id='park-boston'>
 				<div className='width-40 inline float-right'>
-					<img src={Park} alt='ParkBoston'></img>
+					<img src={Park} alt='ParkBoston Passport Parking app'></img>
 				</div>
 				<div className='width-60 inline float-left'>
 					<h2>

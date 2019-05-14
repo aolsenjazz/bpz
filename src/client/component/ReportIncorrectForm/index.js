@@ -72,7 +72,7 @@ class ReportIncorrectForm extends React.Component {
 				<div>
 					<p>Zone ID</p>
 					<div>
-						<img src={Sign} alt='number icon' height='14' />
+						<img src={Sign} alt='ParkBoston parking zone sign icon' height='14' />
 						<input 
 							name='zId' 
 							placeholder='e.g. 219' 
@@ -87,7 +87,7 @@ class ReportIncorrectForm extends React.Component {
 				<div>
 					<p>Email</p>
 					<div>
-						<img src={Details} alt='number icon' height='14' />
+						<img src={Details} alt='contact email' height='14' />
 						<input 
 							name='email' 
 							type='email'
@@ -103,7 +103,7 @@ class ReportIncorrectForm extends React.Component {
 				<div>
 					<p>Description</p>
 					<div>
-						<img src={Details} alt='number icon' height='14' />
+						<img src={Details} alt='description of incorrect parkboston parking zone icon' height='14' />
 						<input 
 							name='description' 
 							onChange={this.handleChange} 
