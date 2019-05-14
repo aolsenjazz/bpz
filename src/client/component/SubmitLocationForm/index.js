@@ -41,7 +41,7 @@ class SubmitLocationForm extends React.Component {
 
 	sendRequest(proposal) {
 
-		axios.post('https://bpz.onrender.com/proposals', proposal)
+		axios.post('https://parking.onrender.com/api/proposals', proposal)
 			.then(response => {
 				this.setState({
 					loading: false,

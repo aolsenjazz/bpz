@@ -42,7 +42,7 @@ class ReportIncorrectForm extends React.Component {
 	}
 
 	sendRequest(correction) {
-		return axios.post('https://bpz.onrender.com/corrections', correction)
+		return axios.post('https://parking.onrender.com/api/corrections', correction)
 			.then(response => {
 				this.setState({
 					loading: false,

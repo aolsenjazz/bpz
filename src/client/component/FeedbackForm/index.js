@@ -37,7 +37,7 @@ class FeedbackForm extends React.Component {
 	}
 
 	sendRequest(feedback) {
-		return axios.post('https://bpz.onrender.com/feedback', feedback)
+		return axios.post('https://parking.onrender.com/api/feedback', feedback)
 			.then(response => {
 				this.setState({
 					loading: false,
