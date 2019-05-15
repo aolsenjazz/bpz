@@ -10,7 +10,7 @@ import './about-us.css';
 
 class About extends React.Component {
 
-	onComponentMount() {
+	componentDidMount() {
 		ReactGA.initialize('UA-140209997-1');
 		ReactGA.pageview(window.location.pathname + window.location.search);
 	}

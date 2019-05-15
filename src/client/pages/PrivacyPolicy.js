@@ -8,7 +8,7 @@ import './privacy-policy.css';
 
 class PrivacyPolicy extends React.Component {
 
-	onComponentMount() {
+	componentDidMount() {
 		ReactGA.initialize('UA-140209997-1');
 		ReactGA.pageview(window.location.pathname + window.location.search);
 	}
