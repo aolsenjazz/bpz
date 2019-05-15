@@ -52,7 +52,7 @@
     "build-dev": "webpack --watch --config webpack.dev.js --mode development",
     "start-dev": "nodemon build/server.js",
     "build-prod": "npm install && webpack --config webpack.prod.js --mode production",
-    "start-prod": "node build/server"
+    "start-prod": "node build/server.js"
   },
   "author": "",
   "license": "ISC"
