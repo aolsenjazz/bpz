@@ -27,6 +27,8 @@ class SubmitLocationForm extends React.Component {
 
 	onClose() {
 		this.props.overlayMode(OVERLAYS.NONE);
+
+		this.setState({ loading: false, submitted: false, });
 	}
 
 	// Form is validated + submit blocked automatically by react-form-with-constraints if invalid input
@@ -41,7 +43,7 @@ class SubmitLocationForm extends React.Component {
 
 	sendRequest(proposal) {
 
-		axios.post('https://parking.onrender.com/api/proposals', proposal)
+		axios.post(API + '/proposals', proposal)
 			.then(response => {
 				this.setState({
 					loading: false,
@@ -50,9 +52,13 @@ class SubmitLocationForm extends React.Component {
 				
 				setTimeout(() => { this.onClose(); }, 1000);
 			})
-			.catch (e => {
-				console.error(e);
-			})
+			.catch(e => {
+				this.setState({
+					loading: false,
+					submitted: true,
+				})
+				setTimeout(() => { this.onClose(); }, 1000);	
+			});
 	}
 
 	handleChange(event) {
@@ -71,6 +77,7 @@ class SubmitLocationForm extends React.Component {
 					onSubmit={this.onSubmit}
 					loading={this.state.loading}
 					submitted={this.state.submitted}
+					status={this.state.submitted ? 'Received. Thanks!' : this.state.loading ? '' : 'Submit'}
 					>
 					<div>
 						<p>Zone ID</p>
@@ -81,7 +88,7 @@ class SubmitLocationForm extends React.Component {
 								placeholder='e.g. 219' 
 								onChange={this.handleChange} 
 								value={this.state.zId}
-								required minLength={3} maxLength={10}
+								required minLength={1} maxLength={10}
 							/>
 						</div>
 					</div>

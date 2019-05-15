@@ -3,6 +3,25 @@
 	width: 100%;
 }
 
+.bottom-scroll-label {
+	position: absolute;
+	width: 284px;
+	height: 42px;
+	left: 50%;
+	margin-left: -142px;
+	bottom: 0;
+	background: rgba(128, 128, 128, 0.5);
+	opacity: 1;
+	color: white;
+	line-height: 42px;
+	font-weight: bold;
+	text-align: center;
+	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
 @media (max-width: 700px) {
 	#overlay-container {
 		height: calc(100% - 130px);

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactGA from 'react-ga';
 import GenericHeader from '../component/GenericHeader';
 import Footer from '../component/Footer';
 
@@ -6,6 +7,11 @@ import './terms-of-service.css';
 
 class TermsOfService extends React.Component {
 
+	onComponentMount() {
+		ReactGA.initialize('UA-140209997-1');
+		ReactGA.pageview(window.location.pathname + window.location.search);
+	}
+	
 	render() {
 		return (
 			<div>

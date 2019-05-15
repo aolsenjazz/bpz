@@ -7,7 +7,24 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-const config = {
+const base = {
+	stats: {
+		colors: true,
+		reasons: true,
+		chunks: false,
+	},
+	module: {
+		rules: [
+			{
+				test: /\.jsx?$/,
+				loader: 'babel-loader',
+				exclude: '/node_modules'
+			}
+		]
+	}
+}
+
+const client = {
 	context: __dirname,
 	entry: ['./src/client/browser.js'],
 	output: {
@@ -53,4 +70,44 @@ const config = {
 	]
 }
 
-module.exports = merge(baseConfig, config);
+const server = {
+	target: 'node',
+	entry: ['./src/server/server.js'],
+	output: {
+		filename: 'server.js',
+		path: path.resolve(__dirname, 'build'),
+		publicPath: '/',
+	},
+	resolve: {
+		extensions: ['.css', '.js', '.json'],
+	},
+	module: {
+		rules: [
+			{
+				test: /\.css$/,
+				use: [
+					'universal-style-loader',
+					'css-loader'
+				],
+			},
+			{
+				test: /\.(png|svg|jpg)$/,
+				use: [
+					'file-loader',
+				],
+			},
+		]
+	},
+	plugins: [
+		new webpack.IgnorePlugin(/^pg-native$/),
+		new webpack.DefinePlugin({
+			'API': JSON.stringify('https://parking.onrender.com/api'),
+		}),
+	],
+	
+}
+
+const mergedClient = merge(baseConfig, client);
+const mergedServer = merge(baseConfig, client);
+
+module.exports = [mergedClient, mergedServer];

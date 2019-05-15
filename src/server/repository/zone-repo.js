@@ -4,7 +4,7 @@ class ZoneRepository {
 	}
 
 	getAll() {
-		return this.db.any('SELECT * FROM zones');
+		return this.db.any('SELECT * FROM zones ORDER BY z_id ASC');
 	}
 
 }

@@ -26,7 +26,12 @@ class FeedbackForm extends React.Component {
 	onClose() {
 		this.props.overlayMode(OVERLAYS.NONE);
 
-		this.setState({ email: '', feedback: ''})
+		this.setState({ 
+			email: '', 
+			feedback: '',
+			loading: false,
+			submitted: false,
+		});
 	}
 
 	onSubmit(e) {
@@ -37,13 +42,20 @@ class FeedbackForm extends React.Component {
 	}
 
 	sendRequest(feedback) {
-		return axios.post('https://parking.onrender.com/api/feedback', feedback)
+		return axios.post(API + '/feedback', feedback)
 			.then(response => {
 				this.setState({
 					loading: false,
 					submitted: true,
 				})
 				setTimeout(() => { this.onClose(); }, 1000);
+			})
+			.catch(e => {
+				this.setState({
+					loading: false,
+					submitted: true,
+				})
+				setTimeout(() => { this.onClose(); }, 1000);	
 			});
 	}
 
@@ -63,6 +75,7 @@ class FeedbackForm extends React.Component {
 					onSubmit={this.onSubmit}
 					loading={this.state.loading}
 					submitted={this.state.submitted}
+					status={this.state.submitted ? 'Received. Thanks!' : this.state.loading ? '' : 'Submit'}
 					>
 					<div>
 						<p>Email</p>

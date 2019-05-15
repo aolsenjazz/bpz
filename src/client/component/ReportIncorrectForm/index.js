@@ -28,7 +28,7 @@ class ReportIncorrectForm extends React.Component {
 	onClose() {
 		this.props.overlayMode(OVERLAYS.NONE);
 
-		this.setState({ zId: '', description: '', email: '' });
+		this.setState({ zId: '', description: '', email: '', loading: false, submitted: false, });
 	}
 
 	onSubmit(e) {
@@ -42,7 +42,7 @@ class ReportIncorrectForm extends React.Component {
 	}
 
 	sendRequest(correction) {
-		return axios.post('https://parking.onrender.com/api/corrections', correction)
+		return axios.post(API + '/corrections', correction)
 			.then(response => {
 				this.setState({
 					loading: false,
@@ -50,6 +50,13 @@ class ReportIncorrectForm extends React.Component {
 				})
 				
 				setTimeout(() => { this.onClose(); }, 1000);
+			})
+			.catch(e => {
+				this.setState({
+					loading: false,
+					submitted: true,
+				})
+				setTimeout(() => { this.onClose(); }, 1000);	
 			});
 	}
 
@@ -68,6 +75,7 @@ class ReportIncorrectForm extends React.Component {
 				onSubmit={this.onSubmit}
 				loading={this.state.loading}
 				submitted={this.state.submitted}
+				status={this.state.submitted ? 'Received. Thanks!' : this.state.loading ? '' : 'Submit'}
 				>
 				<div>
 					<p>Zone ID</p>

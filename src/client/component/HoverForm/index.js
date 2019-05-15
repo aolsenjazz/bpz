@@ -28,7 +28,7 @@ export default class HoverForm extends React.Component {
 					{this.props.children}
 					<input 
 						type='submit' disabled={this.props.submitted || this.props.loading ? 'disabled' : ''}
-						value={this.props.submitted ? this.props.completedMessage : this.props.loading ? '' : this.props.submitMessage}
+						value={this.props.status}
 						className={this.props.loading ? 'submit-loading' : this.props.submitted ? 'submit-submitted' : ''} />
 					<LoadingDots show={this.props.loading} />
 				</FormWithConstraints>

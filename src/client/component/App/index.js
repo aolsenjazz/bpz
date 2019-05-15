@@ -2,7 +2,10 @@ import React from 'react';
 import Sidebar from 'react-sidebar';
 import SidebarMenu from '../SidebarMenu';
 import Header from '../Header';
+import ZoneList from '../ZoneList';
 import OverlayContainer, {OVERLAYS} from '../OverlayContainer';
+import Footer from '../Footer';
+import FAQ from '../FAQ';
 
 import './App.css';
 
@@ -112,7 +115,13 @@ class App extends React.Component {
 					activeLocation={this.activeLocation}
 					center={this.center}
 					markers={this.props.markers}
-				/>	
+					scroll={this.scroll}
+				/>
+				<div id='static-content'>
+					<ZoneList zones={this.props.markers} ref={(section) => { this.ZoneList = section; }} />
+					<FAQ />
+				</div>
+				<Footer />
 			</Sidebar>
 		);
 	}

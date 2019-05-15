@@ -13,7 +13,7 @@ const INPUT = '&input=';
 const router = express.Router();
 
 router.post('/', [
-		body('email').isEmail(),
+		body('email').exists(),
 		body('text').isLength({min: 1, max: 300}),
 	], 
 	function(req, res) {

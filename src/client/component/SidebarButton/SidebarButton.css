@@ -11,6 +11,8 @@
 	text-align: left;
 	cursor: pointer;
 	margin-left: 8px;
+	font-size: 16px;
+	font-weight: bold;
 }
 
 .component-sidebar-button {
@@ -29,6 +31,8 @@
 }
 
 .component-sidebar-button .pad-wrapper > div {
+	margin-left: 10px;
+	margin-right: 10px;
 	width: 20px;
 	height: 20px;
 	display: inline-block;

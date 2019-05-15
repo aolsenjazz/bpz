@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link, animateScroll as scroll} from 'react-scroll';
 
 import SubmitLocationForm from '../SubmitLocationForm';
 import ReportIncorrectForm from '../ReportIncorrectForm';
@@ -40,6 +41,11 @@ class OverlayContainer extends React.Component {
 					show={this.props.overlayMode() === OVERLAYS.FEEDBACK}
 					overlayMode={this.props.overlayMode}
 				/>
+				<a 
+					href='#zone-list'
+					className='bottom-scroll-label' 
+					hidden={this.props.overlayMode() != OVERLAYS.NONE}
+				>Zone List & FAQ</a>
 			</div>
 		);
 	}

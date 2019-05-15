@@ -1,5 +1,6 @@
 import React from 'react';
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import renderer from './renderer';
 import db from './db';
 import { renderToString } from 'react-dom/server';
@@ -17,6 +18,10 @@ import apiRouter from './routes/api-router';
 const app = express();
 
 app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
 
 app.get('/', (req, res) => {
 	let title = 'Boston Parking Zones: ParkBoston and Passport Zone Map';
