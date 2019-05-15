@@ -108,6 +108,6 @@ const server = {
 }
 
 const mergedClient = merge(baseConfig, client);
-const mergedServer = merge(baseConfig, client);
+const mergedServer = merge(baseConfig, server);
 
 module.exports = [mergedClient, mergedServer];
