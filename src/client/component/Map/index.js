@@ -41,11 +41,11 @@ class SimpleMap extends React.Component {
 
 	handleMapClick({x, y, lat, lng, event}) {
 		console.log('map click');
-		if (!this.state.showTooltip) {
-			this.props.activeLocation(lat, lng);	
-		}
+		// if (!this.state.showTooltip) {
+		// 	this.props.activeLocation(lat, lng);	
+		// }
 
-		this.setState({ showTooltip: false });
+		// this.setState({ showTooltip: false });
 	}
 
 	handleClusterClick(marker) {
