@@ -35,7 +35,6 @@ class SimpleMap extends React.Component {
 		let activeId = this.props.activeLocation().zId;
 
 		this.props.activeLocation(zone.lat, zone.lng, null, zone.zId, zone.description, zone.direction, zone.street);
-		console.log(zone);
 		this.setState({ showTooltip: activeId === zone.zId ? !this.state.showTooltip : true });
 	}
 
