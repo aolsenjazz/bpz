@@ -32,6 +32,7 @@ class SimpleMap extends React.Component {
 	}
 
 	handleZoneClick(zone) {
+		console.log('zone click');
 		let activeId = this.props.activeLocation().zId;
 
 		this.props.activeLocation(zone.lat, zone.lng, null, zone.zId, zone.description, zone.direction, zone.street);
@@ -39,6 +40,7 @@ class SimpleMap extends React.Component {
 	}
 
 	handleMapClick({x, y, lat, lng, event}) {
+		console.log('map click');
 		if (!this.state.showTooltip) {
 			this.props.activeLocation(lat, lng);	
 		}
