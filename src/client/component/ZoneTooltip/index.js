@@ -22,9 +22,6 @@ export default class ParkingZone extends React.Component {
 	}
 
 	render() {
-		console.log('props: ', this.props);
-		console.log('loc: ', this.props.activeLocation());
-		console.log('show: ', this.props.show());
 		return (
 			 <div className={'component-zone-tooltip ' + (this.props.show() ? '' : 'tooltip-hidden')} onClick={(e) => e.stopPropagation()}>
 			 	<div className='tooltip-data-container'>

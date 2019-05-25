@@ -18,7 +18,6 @@ class SimpleMap extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.handleMapClick = this.handleMapClick.bind(this);
 		this.handleZoneClick = this.handleZoneClick.bind(this);
 		this.handleClusterClick = this.handleClusterClick.bind(this);
 		this.onChange = this.onChange.bind(this);
@@ -32,20 +31,10 @@ class SimpleMap extends React.Component {
 	}
 
 	handleZoneClick(zone) {
-		console.log('zone click');
 		let activeId = this.props.activeLocation().zId;
 
 		this.props.activeLocation(zone.lat, zone.lng, null, zone.zId, zone.description, zone.direction, zone.street);
 		this.setState({ showTooltip: activeId === zone.zId ? !this.state.showTooltip : true });
-	}
-
-	handleMapClick({x, y, lat, lng, event}) {
-		console.log('map click');
-		// if (!this.state.showTooltip) {
-		// 	this.props.activeLocation(lat, lng);	
-		// }
-
-		// this.setState({ showTooltip: false });
 	}
 
 	handleClusterClick(marker) {
@@ -111,7 +100,6 @@ class SimpleMap extends React.Component {
 						bootstrapURLKeys={{ key: 'AIzaSyCBgJaq_tUvshKMSJHsizmp5Ag3W2RSDyY' }}
 						center={this.props.center()}
 						zoom={this.props.activeLocation().zoom}
-						onClick={this.handleMapClick}
 						onChange={this.onChange}
 						options={{clickableIcons: false, draggableCursor: (this.props.overlayMode() === OVERLAYS.SUBMIT ? 'pointer' : '')}}
 						onTilesLoaded={() => this.setState({ mapLoaded: true, })}
