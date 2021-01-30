@@ -13,7 +13,7 @@ class Home extends React.Component {
 
 	render() {
 		return (
-			<App markers={this.props.markers} />
+			<App markers={this.props.markers} mapsKey={this.props.mapsKey} />
 		)
 	}
 

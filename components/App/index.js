@@ -116,6 +116,7 @@ class App extends React.Component {
 					center={this.center}
 					markers={this.props.markers}
 					scroll={this.scroll}
+					mapsKey={this.props.mapsKey}
 				/>
 				<div id='static-content'>
 					<ZoneList zones={this.props.markers} ref={(section) => { this.ZoneList = section; }} />

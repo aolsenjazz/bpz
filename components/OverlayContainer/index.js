@@ -26,6 +26,7 @@ class OverlayContainer extends React.Component {
 					activeLocation={this.props.activeLocation}
 					overlayMode={this.props.overlayMode}
 					markers={this.props.markers}
+					mapsKey={this.props.mapsKey}
 				/>
 				<SubmitLocationForm 
 					show={this.props.overlayMode() === OVERLAYS.SUBMIT}

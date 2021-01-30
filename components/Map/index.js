@@ -97,7 +97,7 @@ class SimpleMap extends React.Component {
 				/>
 				<div className={'map-container ' + (this.state.mapLoaded && !this.state.connectFailed ? '' : 'map-hidden')}>
 					<GoogleMapReact
-						bootstrapURLKeys={{ key: 'AIzaSyCBgJaq_tUvshKMSJHsizmp5Ag3W2RSDyY' }}
+						bootstrapURLKeys={{ key: this.props.mapsKey }}
 						center={this.props.center()}
 						zoom={this.props.activeLocation().zoom}
 						onChange={this.onChange}

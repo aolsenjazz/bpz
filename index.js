@@ -9,7 +9,7 @@ app.use(express.static('public'));
 	await register(app);
 
 	app.get('/', (req, res) => {
-		res.render('index');
+		res.render('index', {mapsKey: process.env.MAPS_KEY});
 	});
 
 	app.get('/contact', (req, res) => {
