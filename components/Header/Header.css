@@ -1,0 +1,89 @@
+.component-sidebar-toggle {
+	background-color: #fb4d42;
+	height: 65px;
+	width: 65px;
+	border: none !important;
+	cursor: pointer;
+}
+
+.component-sidebar-toggle:focus {
+	outline: none;
+}
+
+.component-sidebar-toggle > div {
+	height: 3px;
+	width: 18px;
+	background-color: white;
+	margin: 0 auto;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	background-color: white;
+}
+
+#app-header {
+	height: 65px;
+	background-color: white;
+	box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
+	width: 100%;
+	position: relative;
+	z-index: 1;
+}
+
+#app-header h1 {
+	margin-top: 6px;
+}
+
+#app-header a {
+	font-weight: bold;
+	font-size: 16px;
+	text-align: center;
+	color: #091f2f;
+	text-decoration: none;
+}
+
+#app-header .title {
+	width: 206px;
+	height: 100%;
+	margin-left: 20px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#app-header .underline {
+	width: 100%;
+	background-color: #fb4d42;
+	height: 4px;
+}
+
+#app-header .component-location-search {
+	margin-top: 17px;
+	margin-left: 30px;
+	width: calc(100% - 400px);
+}
+
+@media (max-width: 700px) {
+
+	#app-header {
+		height: 130px;
+		display: inline-block;
+		width: 100%;
+	}
+
+	.header-collapsed {
+		height: 65px !important;
+	}
+
+	#app-header > div {
+		display: block;
+		height: 65px;
+	}
+
+	#app-header .title {
+		height: 65px;
+	}
+
+	#app-header .component-location-search {
+		width: calc(100% - 65px);
+	}
+
+}

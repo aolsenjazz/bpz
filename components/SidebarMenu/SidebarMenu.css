@@ -1,0 +1,33 @@
+.sidebar {
+	background-color: #fb4d42;
+	z-index: 3 !important;
+}
+
+.sidebar > div > button {
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+	border: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	margin-bottom: 30px;
+	cursor: pointer;
+	width: 100%;
+	margin-left: 0;
+	height: 65px;
+	background-color: #fb4d42;
+	color: white;
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+}
+
+.sidebar > div > button:focus {
+	outline: none;
+}
+
+.sidebar > div > button:hover {
+	background-color: #bc3a32;
+}
+
+.sidebar-overlay {
+	z-index: 2 !important;
+}

@@ -1,0 +1,52 @@
+.component-sidebar-button button {
+	width: calc(100% - 60px);
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+	font-family: arial;
+	color: white;
+	font-size: 14px;
+	height: 50px;
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	text-align: left;
+	cursor: pointer;
+	margin-left: 8px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.component-sidebar-button {
+	width: 250px;
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	cursor: pointer;
+	display: flex;
+}
+
+.component-sidebar-button .pad-wrapper {
+	width: 230px;
+	margin: 0 auto;
+	left: 0;
+	cursor: pointer;
+}
+
+.component-sidebar-button .pad-wrapper > div {
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: center;
+}
+
+.component-sidebar-button img {
+	margin-bottom: -3px;
+}
+
+.component-sidebar-button:hover {
+	background-color: #bc3a32;
+}
+
+.component-sidebar-button button:focus {
+	outline: 0;
+}

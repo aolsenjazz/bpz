@@ -16,5 +16,18 @@
   "bugs": {
     "url": "https://github.com/aolsenjazz/bpz/issues"
   },
-  "homepage": "https://github.com/aolsenjazz/bpz#readme"
+  "homepage": "https://github.com/aolsenjazz/bpz#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "google-map-react": "^2.1.9",
+    "points-cluster": "^0.1.4",
+    "prop-types": "^15.7.2",
+    "react-autosuggest": "^10.1.0",
+    "react-form-with-constraints": "^0.16.0",
+    "react-ga": "^3.3.0",
+    "react-scroll": "^1.8.1",
+    "react-sidebar": "^3.0.2",
+    "svg-url-loader": "^7.1.1"
+  }
 }

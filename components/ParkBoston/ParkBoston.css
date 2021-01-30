@@ -1,0 +1,16 @@
+#park-boston {
+	min-height: 200px;
+}
+
+#park-boston img {
+	max-height: 210px;
+	margin: 0 auto;
+}
+
+#park-boston .width-40 {
+	text-align: center;
+}
+
+#park-boston .width-60 {
+	vertical-align: top;
+}
