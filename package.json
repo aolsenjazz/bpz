@@ -1,0 +1,20 @@
+{
+  "name": "bpz",
+  "version": "0.1.0",
+  "description": "interactive map listing the parking zone numbers in Boston",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start ecosystem.config.js",
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aolsenjazz/bpz.git"
+  },
+  "author": "Alexander Olsen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aolsenjazz/bpz/issues"
+  },
+  "homepage": "https://github.com/aolsenjazz/bpz#readme"
+}
