@@ -1,6 +1,6 @@
 const express = require('express');
 const register = require('@react-ssr/express/register');
-const apiRouter = require('./api-router')(process.env.MAPS_KEY);
+const apiRouter = require('./routers/api-router.js')(process.env.MAPS_KEY);
 
 const app = express();
 
