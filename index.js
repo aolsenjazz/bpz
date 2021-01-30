@@ -1,5 +1,6 @@
 const express = require('express');
 const register = require('@react-ssr/express/register');
+const apiRouter = require('./api-router')(process.env.MAPS_KEY);
 
 const app = express();
 
@@ -28,7 +29,9 @@ app.use(express.static('public'));
 		res.render('terms-of-service');
 	});
 
+	app.use('/api', apiRouter);
+
 	app.listen(3000, () => {
-		console.log('> Ready on http://localhost:3000');
+		console.log('Ready on http://localhost:3000');
 	});
 })();

@@ -36,7 +36,7 @@ class LocationSearch extends React.Component {
 	};
  	
 	onSuggestionsFetchRequested({ value }) {
-		axios.get(API + '/suggestions?q=' + value + '&sessionId=' + this.state.uuid)
+		axios.get('/api/suggestions?q=' + value + '&sessionId=' + this.state.uuid)
 			.then(response => {
 				this.setState({
 					suggestions: response.data
@@ -54,7 +54,7 @@ class LocationSearch extends React.Component {
 	};
 
 	onSuggestionSelected(event, {suggestion, suggestionValue}) {
-		axios.get(API + '/places?placeId=' + suggestion.place_id + '&sessionId=' + this.state.uuid)
+		axios.get('/api/places?placeId=' + suggestion.place_id + '&sessionId=' + this.state.uuid)
 			.then(response => {
 				this.props.activeLocation(response.data.lat, response.data.lng);
 				this.props.center(response.data.lat, response.data.lng);

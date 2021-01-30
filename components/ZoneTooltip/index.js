@@ -1,8 +1,5 @@
 import React from 'react';
 
-import Compass from './compass.svg';
-import Sign from './sign.svg';
-import Pin from './pin.svg';
 import {OVERLAYS} from '../OverlayContainer';
 
 import './ZoneTooltip.css';
@@ -27,7 +24,7 @@ export default class ParkingZone extends React.Component {
 			 	<div className='tooltip-data-container'>
 					<div className='data-container tooltip-header'>
 						<div>
-							<img src={Sign} height='15' alt='park boston zone id sign' />
+							<img src='/sign.svg' height='15' alt='park boston zone id sign' />
 							<p>
 								Zone ID
 							</p>
@@ -40,7 +37,7 @@ export default class ParkingZone extends React.Component {
 					</div>
 					<div className='data-container width-50'>
 						<div>
-							<img src={Pin} height='15' alt='meter zone location icon' />
+							<img src='/pin.svg' height='15' alt='meter zone location icon' />
 							<p>
 								Street
 							</p>
@@ -51,7 +48,7 @@ export default class ParkingZone extends React.Component {
 					</div>
 					<div className='data-container width-50'>
 						<div>
-							<img src={Compass} height='15' alt='meter zone location icon side of street' />
+							<img src='/compass.svg' height='15' alt='meter zone location icon side of street' />
 							<p>
 								Side of Street
 							</p>

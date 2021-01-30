@@ -59,12 +59,12 @@ class SimpleMap extends React.Component {
 		let active = this.props.activeLocation();
 		this.props.activeLocation(active.lat, active.lng, zoom, active.zId, active.description);
 
-		let parsed = this.props.markers.map(m => {
-			m.zId = m.z_id;
-			return m;
-		});
+		// let parsed = this.props.markers.map(m => {
+		// 	m.zId = m.z_id;
+		// 	return m;
+		// });
 
-		this.updateVisibleMarkers(parsed, bounds);
+		// this.updateVisibleMarkers(parsed, bounds);
 	}
 
 	updateVisibleMarkers(markers, bounds) {
@@ -104,27 +104,28 @@ class SimpleMap extends React.Component {
 						options={{clickableIcons: false, draggableCursor: (this.props.overlayMode() === OVERLAYS.SUBMIT ? 'pointer' : '')}}
 						onTilesLoaded={() => this.setState({ mapLoaded: true, })}
 					>	
-						{this.state.markersToRender.map(marker => {
-							if (marker.numPoints === 1) {
-								return (<ParkingZone
-									key={marker.points[0].z_id}
-									lat={marker.wy}
-									lng={marker.wx}
-									show={this.props.overlayMode() === OVERLAYS.NONE}
-									onClick={() => {this.handleZoneClick(marker.points[0])}}
-								/>);
-							} else {
-								return (<ZoneCluster
-									key={String(marker.wy) + String(marker.wx)}
-									lat={marker.wy}
-									lng={marker.wx}
-									numZones={marker.numPoints}
-									show={this.props.overlayMode() === OVERLAYS.NONE}
-									onClick={() => {this.handleClusterClick(marker);}}
-								/>);
-							}
+						{
+						// 	this.state.markersToRender.map(marker => {
+						// 	if (marker.numPoints === 1) {
+						// 		return (<ParkingZone
+						// 			key={marker.points[0].z_id}
+						// 			lat={marker.wy}
+						// 			lng={marker.wx}
+						// 			show={this.props.overlayMode() === OVERLAYS.NONE}
+						// 			onClick={() => {this.handleZoneClick(marker.points[0])}}
+						// 		/>);
+						// 	} else {
+						// 		return (<ZoneCluster
+						// 			key={String(marker.wy) + String(marker.wx)}
+						// 			lat={marker.wy}
+						// 			lng={marker.wx}
+						// 			numZones={marker.numPoints}
+						// 			show={this.props.overlayMode() === OVERLAYS.NONE}
+						// 			onClick={() => {this.handleClusterClick(marker);}}
+						// 		/>);
+						// 	}
 
-						})
+						// })
 						}
 						<ParkingZone
 							lat={this.props.activeLocation().lat}

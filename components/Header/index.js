@@ -7,12 +7,6 @@ class Header extends React.Component {
 	render() {
 		return (
 			<header id='app-header' className={this.props.overlayMode ? 'header-collapsed' : ''}>
-				<button className='component-sidebar-toggle' onClick={() => this.props.sidebarOpen(true)}>
-					<div />
-					<div />
-					<div />
-				</button>
-
 				<div className='title'>
 					<h1><a href='/'>BOSTON PARKING ZONES</a></h1>
 					<div className='underline'></div>

@@ -1,6 +1,4 @@
 import React from 'react';
-import Sidebar from 'react-sidebar';
-import SidebarMenu from '../SidebarMenu';
 import Header from '../Header';
 import ZoneList from '../ZoneList';
 import OverlayContainer, {OVERLAYS} from '../OverlayContainer';
@@ -92,18 +90,7 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<Sidebar
-				sidebar={
-					<SidebarMenu 
-						overlayMode={this.overlayMode}
-						sidebarOpen={this.sidebarOpen}
-					/>
-				}
-				open={this.sidebarOpen()}
-				overlayMode={this.overlayMode()}
-				onSetOpen={this.sidebarOpen}
-				sidebarClassName='sidebar'
-			>
+			<React.Fragment>
 				<Header 
 					activeLocation={this.activeLocation} 
 					sidebarOpen={this.sidebarOpen}
@@ -118,14 +105,22 @@ class App extends React.Component {
 					scroll={this.scroll}
 					mapsKey={this.props.mapsKey}
 				/>
+
 				<div id='static-content'>
-					<ZoneList zones={this.props.markers} ref={(section) => { this.ZoneList = section; }} />
+					
+
+
+
+
 					<FAQ />
 				</div>
 				<Footer />
-			</Sidebar>
+			</React.Fragment>
 		);
 	}
 }
+// <ZoneList zones={this.props.markers} ref={(section) => { this.ZoneList = section; }} />
+
+
 
 export default App;

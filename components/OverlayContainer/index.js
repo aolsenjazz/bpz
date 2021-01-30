@@ -1,10 +1,7 @@
 import React from 'react';
 import {Link, animateScroll as scroll} from 'react-scroll';
 
-import SubmitLocationForm from '../SubmitLocationForm';
-import ReportIncorrectForm from '../ReportIncorrectForm';
 import SimpleMap from '../Map';
-import FeedbackForm from '../FeedbackForm';
 
 import './OverlayContainer.css';
 
@@ -27,20 +24,6 @@ class OverlayContainer extends React.Component {
 					overlayMode={this.props.overlayMode}
 					markers={this.props.markers}
 					mapsKey={this.props.mapsKey}
-				/>
-				<SubmitLocationForm 
-					show={this.props.overlayMode() === OVERLAYS.SUBMIT}
-					activeLocation={this.props.activeLocation}
-					onCloseSubmit={this.removeTemporaryMarker}
-					overlayMode={this.props.overlayMode}
-				/>
-				<ReportIncorrectForm 
-					show={this.props.overlayMode() === OVERLAYS.REPORT}
-					overlayMode={this.props.overlayMode}
-				/>
-				<FeedbackForm 
-					show={this.props.overlayMode() === OVERLAYS.FEEDBACK}
-					overlayMode={this.props.overlayMode}
 				/>
 				<a 
 					href='#zone-list'

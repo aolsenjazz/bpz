@@ -11,7 +11,6 @@ export default class ParkingZone extends React.Component {
 	}
 
 	onClick(e) {
-		// e.preventDefault();
 		this.props.onClick();
 	}
 

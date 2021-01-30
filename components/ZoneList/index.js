@@ -1,10 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-import Sign from './sign.svg';
-import Pin from './pin.svg';
-import Compass from './compass.svg';
-
 import './ZoneList.css';
 
 class App extends React.Component {
@@ -31,19 +27,19 @@ class App extends React.Component {
 					<thead>
 						<tr>
 							<th>
-								<img src={Sign} alt='boston parking meter sign icon'></img>
+								<img src='/sign.svg' alt='boston parking meter sign icon'></img>
 								<p>
 									Zone ID
 								</p>
 							</th>
 							<th>
-								<img src={Pin} alt='parking zone location'></img>
+								<img src='/pin.svg' alt='parking zone location'></img>
 								<p>
 									Street
 								</p>
 							</th>
 							<th>
-								<img src={Compass} alt='parking street direction'></img>
+								<img src='/compass.svg' alt='parking street direction'></img>
 								<p>
 									Side of Street
 								</p>
