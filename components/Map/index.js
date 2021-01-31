@@ -1,7 +1,7 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import axios from 'axios';
-import supercluster from 'points-cluster';
+import Supercluster from 'supercluster';
 
 import ParkingZone from '../ParkingZone';
 import ZoneCluster from '../ZoneCluster';
@@ -38,9 +38,10 @@ class SimpleMap extends React.Component {
 	}
 
 	handleClusterClick(marker) {
+
 		this.setState({showTooltip: false})
 		this.props.activeLocation(null, null, 17) ;
-		this.props.center(marker.wy, marker.wx);
+		this.props.center(marker.geometry.coordinates[1], marker.geometry.coordinates[0]);
 	}
 
 	showTooltip(show) {
@@ -59,12 +60,12 @@ class SimpleMap extends React.Component {
 		let active = this.props.activeLocation();
 		this.props.activeLocation(active.lat, active.lng, zoom, active.zId, active.description);
 
-		// let parsed = this.props.markers.map(m => {
-		// 	m.zId = m.z_id;
-		// 	return m;
-		// });
+		let parsed = this.props.markers.map(m => {
+			m.zId = m.z_id;
+			return m;
+		});
 
-		// this.updateVisibleMarkers(parsed, bounds);
+		this.updateVisibleMarkers(parsed, bounds);
 	}
 
 	updateVisibleMarkers(markers, bounds) {
@@ -72,19 +73,29 @@ class SimpleMap extends React.Component {
 			return bounds.nw.lat > m.lat && m.lat > bounds.se.lat && bounds.nw.lng < m.lng && m.lng < bounds.se.lng;
 		});
 
-		let clExec = supercluster(visible, {
-			maxZoom: 16,
-			radius: 60,
+		let parsed = visible.map(marker => {
+			marker.geometry = {
+				type: 'point',
+				coordinates: [marker.lng, marker.lat]
+			}
+			marker.type = 'point';
+			
+			return marker;
 		});
 
-		let cl = clExec({
-			center: this.props.center,
-			bounds: bounds,
-			zoom: this.props.zoom,
+		let index = new Supercluster({
+			radius: 60,
+			maxZoom: 16
 		});
+
+		let bbox = [bounds.nw.lng, bounds.sw.lat, bounds.se.lng, bounds.ne.lat];
+
+		index.load(parsed);
+
+		let clust = index.getClusters(bbox, this.props.zoom);
 
 		this.setState({
-			markersToRender: cl
+			markersToRender: clust
 		});
 	}
 
@@ -105,27 +116,27 @@ class SimpleMap extends React.Component {
 						onTilesLoaded={() => this.setState({ mapLoaded: true, })}
 					>	
 						{
-						// 	this.state.markersToRender.map(marker => {
-						// 	if (marker.numPoints === 1) {
-						// 		return (<ParkingZone
-						// 			key={marker.points[0].z_id}
-						// 			lat={marker.wy}
-						// 			lng={marker.wx}
-						// 			show={this.props.overlayMode() === OVERLAYS.NONE}
-						// 			onClick={() => {this.handleZoneClick(marker.points[0])}}
-						// 		/>);
-						// 	} else {
-						// 		return (<ZoneCluster
-						// 			key={String(marker.wy) + String(marker.wx)}
-						// 			lat={marker.wy}
-						// 			lng={marker.wx}
-						// 			numZones={marker.numPoints}
-						// 			show={this.props.overlayMode() === OVERLAYS.NONE}
-						// 			onClick={() => {this.handleClusterClick(marker);}}
-						// 		/>);
-						// 	}
+							this.state.markersToRender.map(marker => {
+							if (marker.type === 'point') {
+								return (<ParkingZone
+									key={marker.z_id}
+									lat={marker.lat}
+									lng={marker.lng}
+									show={this.props.overlayMode() === OVERLAYS.NONE}
+									onClick={() => {this.handleZoneClick(marker)}}
+								/>);
+							} else {
+								return (<ZoneCluster
+									key={String(marker.geometry.coordinates[0]) + String(marker.geometry.coordinates[1])}
+									lat={marker.geometry.coordinates[1]}
+									lng={marker.geometry.coordinates[0]}
+									numZones={marker.properties.point_count}
+									show={this.props.overlayMode() === OVERLAYS.NONE}
+									onClick={() => {this.handleClusterClick(marker);}}
+								/>);
+							}
 
-						// })
+						})
 						}
 						<ParkingZone
 							lat={this.props.activeLocation().lat}

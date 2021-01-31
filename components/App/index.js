@@ -107,11 +107,7 @@ class App extends React.Component {
 				/>
 
 				<div id='static-content'>
-					
-
-
-
-
+					<ZoneList zones={this.props.markers} ref={(section) => { this.ZoneList = section; }} />
 					<FAQ />
 				</div>
 				<Footer />
@@ -119,7 +115,7 @@ class App extends React.Component {
 		);
 	}
 }
-// <ZoneList zones={this.props.markers} ref={(section) => { this.ZoneList = section; }} />
+
 
 
 

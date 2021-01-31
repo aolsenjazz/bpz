@@ -1,6 +1,7 @@
 const express = require('express');
 const register = require('@react-ssr/express/register');
 const apiRouter = require('./routers/api-router.js')(process.env.MAPS_KEY);
+const zones = require('./zones');
 
 const app = express();
 
@@ -10,7 +11,7 @@ app.use(express.static('public'));
 	await register(app);
 
 	app.get('/', (req, res) => {
-		res.render('index', {mapsKey: process.env.MAPS_KEY});
+		res.render('index', {mapsKey: process.env.MAPS_KEY, markers: zones});
 	});
 
 	app.get('/contact', (req, res) => {
