@@ -1,6 +1,6 @@
 {
   "name": "bpz",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Interactive map listing the parking zone numbers in Boston. Visit bostonparkingzones.com",
   "main": "index.js",
   "scripts": {
