@@ -1,11 +1,10 @@
 {
   "name": "bpz",
-  "version": "0.1.0",
-  "description": "interactive map listing the parking zone numbers in Boston",
+  "version": "1.0.0",
+  "description": "Interactive map listing the parking zone numbers in Boston. Visit bostonparkingzones.com",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start ecosystem.config.js",
-    "test": "node index.js"
+    "start": "pm2 start ecosystem.config.js"
   },
   "repository": {
     "type": "git",
@@ -13,6 +12,14 @@
   },
   "author": "Alexander Olsen",
   "license": "MIT",
+  "keywords": [
+    "react",
+    "google maps",
+    "maps",
+    "boston",
+    "parking",
+    "zones"
+  ],
   "bugs": {
     "url": "https://github.com/aolsenjazz/bpz/issues"
   },
@@ -25,7 +32,10 @@
     "google-map-react": "^2.1.9",
     "points-cluster": "^0.1.4",
     "prop-types": "^15.7.2",
+    "react": "^17.0.1",
     "react-autosuggest": "^10.1.0",
+    "react-dom": "^17.0.1",
+    "react-favicon": "0.0.18",
     "react-form-with-constraints": "^0.16.0",
     "react-ga": "^3.3.0",
     "react-scroll": "^1.8.1",

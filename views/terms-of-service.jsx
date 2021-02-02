@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactGA from 'react-ga';
+
+import Favicon from 'react-favicon';
+
 import GenericHeader from '@Components/GenericHeader';
 import Footer from '@Components/Footer';
 
@@ -16,6 +19,8 @@ class TermsOfService extends React.Component {
 	render() {
 		return (
 			<div>
+				<title>BPZ - Terms</title>
+				<Favicon url="/pin.ico" />
 				<GenericHeader />
 				<div id='terms-of-service'>
 					<h1>Welcome to Our Terms of Service</h1>

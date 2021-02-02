@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactGA from 'react-ga';
+import Favicon from 'react-favicon';
 
 import Footer from '@Components/Footer';
 import GenericHeader from '@Components/GenericHeader';
@@ -18,6 +19,8 @@ class Contact extends React.Component {
 	render() {
 		return (
 			<div id='contact'>
+				<title>BPZ - Contact</title>
+				<Favicon url="/pin.ico" />
 				<GenericHeader />
 				<div id='contact-container'>
 					<div className='contact-wrapper'>

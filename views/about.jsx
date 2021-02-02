@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactGA from 'react-ga';
+import Favicon from 'react-favicon';
 
 import GenericHeader from '@Components/GenericHeader';
 import AboutUs from '@Components/AboutUs';
@@ -19,6 +20,8 @@ class About extends React.Component {
 	render() {
 		return (
 			<div>
+				<title>BPZ - About</title>
+				<Favicon url="/pin.ico" />
 				<GenericHeader />
 				<div id='about-container'>
 					<AboutUs />

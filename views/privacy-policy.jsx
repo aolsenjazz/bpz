@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactGA from 'react-ga';
+import Favicon from 'react-favicon';
 
 import Footer from '@Components/Footer';
 import GenericHeader from '@Components/GenericHeader';
@@ -17,6 +18,8 @@ class PrivacyPolicy extends React.Component {
 	render() {
 		return (
 			<div>
+				<title>BPZ - Privacy</title>
+				<Favicon url="/pin.ico" />
 				<GenericHeader />
 				<div id='privacy-policy'>
 					<h1>Welcome to our Privacy Policy</h1>
