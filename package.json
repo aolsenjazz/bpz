@@ -32,7 +32,6 @@
     "express-rate-limit": "^5.2.3",
     "express-validator": "^6.9.2",
     "google-map-react": "^2.1.9",
-    "points-cluster": "^0.1.4",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-autosuggest": "^10.1.0",
