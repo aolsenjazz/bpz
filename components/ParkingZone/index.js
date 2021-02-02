@@ -1,23 +1,11 @@
-import React from 'react';
+import { useCallback } from 'react';
 
 import './ParkingZone.css';
 
-export default class ParkingZone extends React.Component {
+export default function ParkingZone(props) {
+	const click = useCallback(() => props.onClick());
 
-	constructor(props) {
-		super(props);
-
-		this.onClick = this.onClick.bind(this);
-	}
-
-	onClick(e) {
-		this.props.onClick();
-	}
-
-	render() {
-		return (
-			 <div className={'component-parking-zone ' + (this.props.show ? '' : 'zone-hidden')} onClick={this.onClick}>
-			 </div>
-		);
-	}
+	return (
+		 <div className={'component-parking-zone ' + (props.show ? '' : 'zone-hidden')} onClick={click}></div>
+	);
 }

@@ -1,25 +1,16 @@
-import React from 'react';
+import { useCallback } from 'react';
 
 import './ZoneCluster.css';
 
-export default class ParkingZone extends React.Component {
-
-	constructor(props) {
-		super(props);
-
-		this.onClick = this.onClick.bind(this);
-	}
-
-	onClick(e) {
+export default function ZoneCluster(props) {
+	const click = useCallback(() => {
 		e.preventDefault();
-		this.props.onClick({lat: this.props.lat, lng: this.props.lng, numZones: this.props.numZones});
-	}
+		props.onClick({lat: props.lat, lng: props.lng, numZones: props.numZones});
+	});
 
-	render() {
-		return (
-			 <div className={'component-zone-cluster ' + (this.props.show ? '' : 'cluster-hidden')} onClick={this.onClick}>
-			 	{this.props.numZones}
-			 </div>
-		);
-	}
+	return (
+		 <div className={'component-zone-cluster ' + (props.show ? '' : 'cluster-hidden')} onClick={click}>
+		 	{props.numZones}
+		 </div>
+	);
 }

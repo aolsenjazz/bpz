@@ -1,25 +1,18 @@
-import React from 'react';
 import LocationSearch from '../LocationSearch';
 import './Header.css';
 
-class Header extends React.Component {
-
-	render() {
-		return (
-			<header id='app-header' className={this.props.overlayMode ? 'header-collapsed' : ''}>
-				<div className='title'>
-					<h1><a href='/'>BOSTON PARKING ZONES</a></h1>
-					<div className='underline'></div>
-				</div>
-				<LocationSearch 
-					activeLocation={this.props.activeLocation} 
-					overlayMode={this.props.overlayMode}
-					center={this.props.center}
-				/>
-			</header>
-		)
-	}
-
+export default function Header(props) {
+	return (
+		<header id='app-header' className={props.overlayMode ? 'header-collapsed' : ''}>
+			<div className='title'>
+				<h1><a href='/'>BOSTON PARKING ZONES</a></h1>
+				<div className='underline'></div>
+			</div>
+			<LocationSearch 
+				activeLocation={props.activeLocation} 
+				overlayMode={props.overlayMode}
+				center={props.center}
+			/>
+		</header>
+	)
 }
-
-export default Header;
