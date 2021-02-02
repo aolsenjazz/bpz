@@ -1,122 +1,66 @@
-import React from 'react';
+import { useState, useEffect, useCallback } from 'react';
+
 import Header from '../Header';
 import ZoneList from '../ZoneList';
-import OverlayContainer, {OVERLAYS} from '../OverlayContainer';
 import Footer from '../Footer';
 import FAQ from '../FAQ';
+import SimpleMap from '../Map';
 
 import './App.css';
 
-class App extends React.Component {
+export default function App(props) {
+	const [location, setLocation] = useState({
+		lat: 42.3596779,
+		lng: -71.0621397, 
+		zoom: 16
+	});
 
-	constructor(props) {
-		super(props);
+	return (
+		<React.Fragment>
+			<Header location={location} setLocation={setLocation} />
+			
+			<div id='map-container'>
+				<SimpleMap location={location} setLocation={setLocation} markers={props.markers} mapsKey={props.mapsKey} />
+				<a href='#zone-list'className='bottom-scroll-label'>Zone List & FAQ</a>
+			</div>
 
-		this.state = {
-			sidebarOpen: false,
-			overlayMode: 0,
-			activeLocation: {
-				lat: 42.3596779,
-				lng: -71.0621397, 
-				zoom: 16,
-				zId: '',
-				description: '',
-				direction: '',
-				street: '',
-			},
-			center: {
-				lat: 42.3596779,
-				lng: -71.0621397,
-			},
-		};
+			<div id='static-content'>
+				<ZoneList zones={props.markers}/>
+				<FAQ />
+			</div>
 
-		this.activeLocation = this.activeLocation.bind(this);
-		this.overlayMode = this.overlayMode.bind(this);
-		this.sidebarOpen = this.sidebarOpen.bind(this);
-		this.center = this.center.bind(this);
-	}
-
-	activeLocation(lat, lng, zoom, zId, description, direction, street) {
-		if (!lat && !lng && !zoom && !zId) return this.state.activeLocation;
-
-		this.setState({
-			activeLocation: {
-				lat: lat ? lat : this.state.activeLocation.lat,
-				lng: lng ? lng : this.state.activeLocation.lng,
-				zoom: zoom ? zoom : this.state.activeLocation.zoom,
-				zId: zId,
-				description: description,
-				direction: direction ? direction : this.state.activeLocation.direction,
-				street: street ? street : this.state.activeLocation.street,
-			}
-		});
-	}
-
-	overlayMode(mode) {
-		if (mode === undefined) return this.state.overlayMode;
-
-		this.setState({
-			overlayMode: mode,
-			sidebarOpen: false,
-			activeLocation: {
-				lat: '',
-				lng: '',
-				zId: '',
-				description: '',
-				direction: '',
-				street: '',
-			}
-		});
-	}
-
-	sidebarOpen(open) {
-		if (open === undefined) return this.state.sidebarOpen;
-
-		this.setState({
-			sidebarOpen: open,
-		});
-	}
-
-	center(lat, lng) {
-		if (lat === undefined && lng === undefined) return this.state.center;
-
-		this.setState({
-			center: {
-				lat: lat,
-				lng: lng,
-			}
-		})
-	}
-
-	render() {
-		return (
-			<React.Fragment>
-				<Header 
-					activeLocation={this.activeLocation} 
-					sidebarOpen={this.sidebarOpen}
-					overlayMode={this.overlayMode() !== OVERLAYS.NONE}
-					center={this.center}
-				/>
-				<OverlayContainer
-					overlayMode={this.overlayMode}
-					activeLocation={this.activeLocation}
-					center={this.center}
-					markers={this.props.markers}
-					scroll={this.scroll}
-					mapsKey={this.props.mapsKey}
-				/>
-
-				<div id='static-content'>
-					<ZoneList zones={this.props.markers} ref={(section) => { this.ZoneList = section; }} />
-					<FAQ />
-				</div>
-				<Footer />
-			</React.Fragment>
-		);
-	}
+			<Footer />
+		</React.Fragment>
+	);
 }
 
 
 
 
-export default App;
+
+// activeLocation(lat, lng, zoom, zId, description, direction, street) {
+	// 	if (!lat && !lng && !zoom && !zId) return this.state.activeLocation;
+
+	// 	this.setState({
+	// 		activeLocation: {
+	// 			lat: lat ? lat : this.state.activeLocation.lat,
+	// 			lng: lng ? lng : this.state.activeLocation.lng,
+	// 			zoom: zoom ? zoom : this.state.activeLocation.zoom,
+	// 			zId: zId,
+	// 			description: description,
+	// 			direction: direction ? direction : this.state.activeLocation.direction,
+	// 			street: street ? street : this.state.activeLocation.street,
+	// 		}
+	// 	});
+	// }
+
+	// center(lat, lng) {
+	// 	if (lat === undefined && lng === undefined) return this.state.center;
+
+	// 	this.setState({
+	// 		center: {
+	// 			lat: lat,
+	// 			lng: lng,
+	// 		}
+	// 	})
+	// }

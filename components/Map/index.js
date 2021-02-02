@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import GoogleMapReact from 'google-map-react';
 import axios from 'axios';
 import Supercluster from 'supercluster';
@@ -6,124 +6,90 @@ import Supercluster from 'supercluster';
 import ParkingZone from '../ParkingZone';
 import ZoneCluster from '../ZoneCluster';
 import ZoneTooltip from '../ZoneTooltip';
-import LocationSelectTitle from '../LocationSelectTitle';
 import LoadingDots from '../LoadingDots';
-
-import {OVERLAYS} from '../OverlayContainer';
 
 import './Map.css';
 
-class SimpleMap extends React.Component {
+export default function SimpleMap(props) {
+	const [markersToRender, setMarkersToRender] = useState([]);
+	const [activeMarker, setActiveMarker] = useState(undefined);
+	const [mapLoaded, setMapLoaded] = useState(false);
 
-	constructor(props) {
-		super(props);
+	const zoneClick = useCallback((zone) => {
+		let _activeMarker;
 
-		this.handleZoneClick = this.handleZoneClick.bind(this);
-		this.handleClusterClick = this.handleClusterClick.bind(this);
-		this.onChange = this.onChange.bind(this);
-		this.updateVisibleMarkers = this.updateVisibleMarkers.bind(this);
-		this.showTooltip = this.showTooltip.bind(this);
+		if (activeMarker === undefined) _activeMarker = zone;
+		else _activeMarker = zone.zId === activeMarker.zId ? undefined : zone;
+		
+		setActiveMarker(_activeMarker);
+	});
 
-		this.state = {
-			showTooltip: false,
-			markersToRender: [],
-		}
-	}
+	const clusterClick = useCallback((marker) => {
+		setActiveMarker(undefined);
 
-	handleZoneClick(zone) {
-		let activeId = this.props.activeLocation().zId;
-
-		this.props.activeLocation(zone.lat, zone.lng, null, zone.zId, zone.description, zone.direction, zone.street);
-		this.setState({ showTooltip: activeId === zone.zId ? !this.state.showTooltip : true });
-	}
-
-	handleClusterClick(marker) {
-
-		this.setState({showTooltip: false})
-		this.props.activeLocation(null, null, 17) ;
-		this.props.center(marker.geometry.coordinates[1], marker.geometry.coordinates[0]);
-	}
-
-	showTooltip(show) {
-		if (show === undefined) return this.state.showTooltip;
-
-		this.setState({
-			showTooltip: show
+		props.setLocation({
+			lat: marker.geometry.coordinates[1], 
+			lng: marker.geometry.coordinates[0], 
+			zoom: 17
 		});
-	}
+	});
 
-	onChange({bounds, center, marginBounds, size, zoom}) {
-		if (zoom !== this.props.activeLocation().zoom) {
-			this.setState({ showTooltip: false })	
-		}
+	const onChange = useCallback(({bounds, center, marginBounds, size, zoom}) => {
+		let active = props.location;
+		props.setLocation({
+			lat: active.lat,
+			lng: active.lng,
+			zoom: zoom
+		})
 
-		let active = this.props.activeLocation();
-		this.props.activeLocation(active.lat, active.lng, zoom, active.zId, active.description);
-
-		let parsed = this.props.markers.map(m => {
+		let parsed = props.markers.map(m => {
 			m.zId = m.z_id;
 			return m;
 		});
 
-		this.updateVisibleMarkers(parsed, bounds);
-	}
+		updateVisibleMarkers(parsed, bounds, zoom);
+	});
 
-	updateVisibleMarkers(markers, bounds) {
+	const updateVisibleMarkers = useCallback((markers, bounds, zoom) => {
 		let visible =  markers.filter(m => {
+			m.geometry = {
+				type: 'point',
+				coordinates: [m.lng, m.lat]
+			}
+			m.type = 'point';
+
 			return bounds.nw.lat > m.lat && m.lat > bounds.se.lat && bounds.nw.lng < m.lng && m.lng < bounds.se.lng;
 		});
 
-		let parsed = visible.map(marker => {
-			marker.geometry = {
-				type: 'point',
-				coordinates: [marker.lng, marker.lat]
-			}
-			marker.type = 'point';
-			
-			return marker;
-		});
-
+		let bbox = [bounds.nw.lng, bounds.sw.lat, bounds.se.lng, bounds.ne.lat];
 		let index = new Supercluster({
 			radius: 60,
 			maxZoom: 16
 		});
+		
+		index.load(visible);
+		let clust = index.getClusters(bbox, zoom);
+		setMarkersToRender(clust);
+	});
 
-		let bbox = [bounds.nw.lng, bounds.sw.lat, bounds.se.lng, bounds.ne.lat];
-
-		index.load(parsed);
-
-		let clust = index.getClusters(bbox, this.props.zoom);
-
-		this.setState({
-			markersToRender: clust
-		});
-	}
-
-	render() {
-		return (
-			<div className='map'>
-				<LocationSelectTitle 
-					onClick={() => this.props.overlayMode(OVERLAYS.NONE)} 
-					show={this.props.overlayMode() === OVERLAYS.SUBMIT} 
-				/>
-				<div className={'map-container ' + (this.state.mapLoaded && !this.state.connectFailed ? '' : 'map-hidden')}>
-					<GoogleMapReact
-						bootstrapURLKeys={{ key: this.props.mapsKey }}
-						center={this.props.center()}
-						zoom={this.props.activeLocation().zoom}
-						onChange={this.onChange}
-						options={{clickableIcons: false, draggableCursor: (this.props.overlayMode() === OVERLAYS.SUBMIT ? 'pointer' : '')}}
-						onTilesLoaded={() => this.setState({ mapLoaded: true, })}
-					>	
-						{
-							this.state.markersToRender.map(marker => {
+	return (
+		<div className='map'>
+			<div className={'map-container ' + (mapLoaded ? '' : 'map-hidden')}>
+				<GoogleMapReact
+					bootstrapURLKeys={{ key: props.mapsKey }}
+					center={props.location}
+					zoom={props.location.zoom}
+					onChange={onChange}
+					options={{clickableIcons: false}}
+					onTilesLoaded={() => setMapLoaded(true)} >	
+					{
+						markersToRender.map(marker => {
 							if (marker.type === 'point') {
 								return (<ParkingZone
 									key={marker.z_id}
 									lat={marker.lat}
 									lng={marker.lng}
-									show={this.props.overlayMode() === OVERLAYS.NONE}
-									onClick={() => {this.handleZoneClick(marker)}}
+									onClick={() => {zoneClick(marker)}}
 								/>);
 							} else {
 								return (<ZoneCluster
@@ -131,43 +97,31 @@ class SimpleMap extends React.Component {
 									lat={marker.geometry.coordinates[1]}
 									lng={marker.geometry.coordinates[0]}
 									numZones={marker.properties.point_count}
-									show={this.props.overlayMode() === OVERLAYS.NONE}
-									onClick={() => {this.handleClusterClick(marker);}}
+									onClick={() => {clusterClick(marker);}}
 								/>);
 							}
 
 						})
-						}
-						<ParkingZone
-							lat={this.props.activeLocation().lat}
-							lng={this.props.activeLocation().lng}
-							zId={this.props.activeLocation().zId}
-							description={this.props.activeLocation().description}
-							show={this.props.overlayMode() === OVERLAYS.SUBMIT}
-							onClick={() => {}}
-						/>
+					}
+					
+					{
+						activeMarker !== undefined ?
 						<ZoneTooltip 
-							key={'tooltip'} 
-							lat={this.props.activeLocation().lat} 
-							lng={this.props.activeLocation().lng} 
-							overlayMode={this.props.overlayMode}
-							show={this.showTooltip}
-							activeLocation={this.props.activeLocation}
-						/>
-					</GoogleMapReact>
-				</div>
-				<div className='status-container'>
-					<LoadingDots
-						color='#288BE4'
-						show={true}
-					/>
-					<p className={this.state.connectFailed ? '' : 'hidden'}>
-						Failed to connect. Try reloading the page.
-					</p>
-				</div>
+							lat={activeMarker.lat} 
+							lng={activeMarker.lng} 
+							zone={activeMarker}
+							setActiveMarker={setActiveMarker} />
+						:
+						null
+					}
+				</GoogleMapReact>
 			</div>
-		);
-	}
+			<div className='status-container'>
+				<LoadingDots
+					color='#288BE4'
+					show={true}
+				/>
+			</div>
+		</div>
+	);
 }
-
-export default SimpleMap;
