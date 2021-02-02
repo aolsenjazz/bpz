@@ -1,6 +1,6 @@
 {
   "name": "bpz",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Interactive map listing the parking zone numbers in Boston. Visit bostonparkingzones.com",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/aolsenjazz/bpz#readme",
   "dependencies": {
+    "@react-ssr/core": "^0.24.0",
+    "@react-ssr/express": "^0.24.0",
     "axios": "^0.21.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "express-rate-limit": "^5.2.3",
@@ -40,6 +42,7 @@
     "react-ga": "^3.3.0",
     "react-scroll": "^1.8.1",
     "react-sidebar": "^3.0.2",
+    "supercluster": "^7.1.2",
     "svg-url-loader": "^7.1.1"
   }
 }
