@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import ReactGA from 'react-ga';
 import Favicon from 'react-favicon';
 
@@ -6,23 +6,17 @@ import App from '@Components/App';
 
 import './global.css';
 
-class Home extends React.Component {
-
-	componentDidMount() {
-		ReactGA.initialize('UA-140209997-1');
+export default function Index(props) {
+	useEffect(() => {
+		ReactGA.initialize(props.gaId);
 		ReactGA.pageview(window.location.pathname + window.location.search);
-	}
+	});
 
-	render() {
-		return (
-			<React.Fragment>
-				<title>Boston Parking Zones</title>
-				<Favicon url="/pin.ico" />
-				<App markers={this.props.markers} mapsKey={this.props.mapsKey} />
-			</React.Fragment>
-		)
-	}
-
+	return (
+		<Fragment>
+			<title>Boston Parking Zones</title>
+			<Favicon url="/pin.ico" />
+			<App markers={props.markers} mapsKey={props.mapsKey} />
+		</Fragment>
+	);
 }
-
-export default Home;

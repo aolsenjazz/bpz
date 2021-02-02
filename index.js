@@ -11,23 +11,23 @@ app.use(express.static('public'));
 	await register(app);
 
 	app.get('/', (req, res) => {
-		res.render('index', {mapsKey: process.env.MAPS_KEY, markers: zones});
+		res.render('index', {mapsKey: process.env.MAPS_KEY, markers: zones, gaId: process.env.GA_ID});
 	});
 
 	app.get('/contact', (req, res) => {
-		res.render('contact');
+		res.render('contact', {gaId: process.env.GA_ID});
 	});
 
 	app.get('/about', (req, res) => {
-		res.render('about');
+		res.render('about', {gaId: process.env.GA_ID});
 	});
 
 	app.get('/privacy-policy', (req, res) => {
-		res.render('privacy-policy');
+		res.render('privacy-policy', {gaId: process.env.GA_ID});
 	});
 
 	app.get('/terms-of-service', (req, res) => {
-		res.render('terms-of-service');
+		res.render('terms-of-service', {gaId: process.env.GA_ID});
 	});
 
 	app.use('/api', apiRouter);
